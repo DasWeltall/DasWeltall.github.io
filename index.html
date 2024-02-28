@@ -81,57 +81,61 @@ button:hover {
 			<a href="#" onclick="changeColor()">Design wechsel</a>
 			</footer>
 </body>
+
 <script>
-        document.getElementById("searchForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            var query = document.getElementById("searchQuery").value;
-            search(query);
+  document.getElementById("searchForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get the search query and convert it to lowercase for case-insensitive search
+    var query = document.getElementById("searchQuery").value.toLowerCase();
+    search(query);
+  });
+
+  function search(query) {
+    var resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
+
+    var predefinedLinks = {
+        "smartghost": ["https://www.smartghost-muenster.de", "https://www.smartghost-muenster.de/shop"],
+        "google": ["https://www.google.com"],
+        "whats app": ["https://web.whatsapp.com/"],
+	"raspberry pi": ["https://www.raspberrypi.com/", "https://www.amazon.de/s?k=raspberry+pi&crid=16G310TLNUIJ8&sprefix=raspberry+pi%2Caps%2C417&ref=nb_sb_noss_1"],
+	"Google": ["https://www.google.com"],
+	"apple": ["https://www.apple.com", "https://en.wikipedia.org/wiki/Apple_Inc."],
+	"nabu": ["https://www.nabu.de/", "https://www.nabu-muenster.de/"],
+	"nachichten": ["https://www.tagesschau.de/", "https://www.n-tv.de/"],
+	"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
+	"you tube": ["https://www.youtube.com/", "https://www.youtube.de"],
+	"Musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
+	"musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
+	"soundcloud": ["https://soundcloud.com/"],
+	"spotify": ["https://open.spotify.com/"],
+	"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
+	"you toube": ["https://www.youtube.com/"],
+	"google maps": ["https://www.google.com/maps/"],
+	"amazon": ["https://www.amazon.com/"]
+	"wikipedia": ["https://de.wikipedia.org/"]
+		    
+    };
+
+    // Check if the lowercase query exists in the predefinedLinks object
+    if (predefinedLinks.hasOwnProperty(query.toLowerCase())) {
+        var links = predefinedLinks[query.toLowerCase()];
+        links.forEach(function(link) {
+            var listItem = document.createElement("li");
+            var linkElement = document.createElement("a");
+            linkElement.href = link;
+            linkElement.textContent = link;
+            linkElement.target = "_blank"; 
+            listItem.appendChild(linkElement);
+            resultsDiv.appendChild(listItem);
         });
-
-        function search(query) {
-            var resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
-
-            
-            var predefinedLinks = {
-                "smartghost": ["https://www.smartghost-muenster.de", "https://www.smartghost-muenster.de/shop"],
-                "google": ["https://www.google.com"],
-                "whats app": ["https://web.whatsapp.com/"],
-		"raspberry pi": ["https://www.raspberrypi.com/", "https://www.amazon.de/s?k=raspberry+pi&crid=16G310TLNUIJ8&sprefix=raspberry+pi%2Caps%2C417&ref=nb_sb_noss_1"],
-		"Google": ["https://www.google.com"],
-		"apple": ["https://www.apple.com", "https://en.wikipedia.org/wiki/Apple_Inc."],
-		"nabu": ["https://www.nabu.de/", "https://www.nabu-muenster.de/"],
-		"nachichten": ["https://www.tagesschau.de/", "https://www.n-tv.de/"],
-		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
-		"you tube": ["https://www.youtube.com/", "https://www.youtube.de"],
-		"Musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
-		"musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
-		"soundcloud": ["https://soundcloud.com/"],
-		"spotify": ["https://open.spotify.com/"],
-		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
-		"you toube": ["https://www.youtube.com/"],
-		"google maps": ["https://www.google.com/maps/"],
-		"amazon": ["https://www.amazon.com/"]
-            };
-
-            // Überprüfen, ob das eingegebene Keyword in den vordefinierten Links enthalten ist
-            if (predefinedLinks.hasOwnProperty(query)) {
-                var links = predefinedLinks[query];
-                // Links anzeigen
-                links.forEach(function(link) {
-                    var listItem = document.createElement("li");
-                    var linkElement = document.createElement("a");
-                    linkElement.href = link;
-                    linkElement.textContent = link;
-                    linkElement.target = "_blank"; 
-                    listItem.appendChild(linkElement);
-                    resultsDiv.appendChild(listItem);
-                });
-            } else {
-                resultsDiv.textContent = "Keine Ergebnisse gefunden.";
-            }
-        }
+    } else {
+      resultsDiv.textContent = "Keine Ergebnisse gefunden.";
+    }
+  }
 </script>
+
 
 <script>
   function changeColor() {
