@@ -77,7 +77,7 @@ button:hover {
 			<h6 style="color: white;">| smartghost |</h6>
 			<a href="koogle.html">Über Koogle</a>
 			<a href="einstellungen.html">Einstellungen</a>
-			<a href="design.html">Design wechseln</a>
+			<a href="#" onclick="changeColor()">Design wechsel</a>
 			</footer>
 </body>
 <script>
@@ -100,7 +100,7 @@ button:hover {
 		"Google": ["https://www.google.com"],
 		"apple": ["https://www.apple.com", "https://en.wikipedia.org/wiki/Apple_Inc."],
 		"nabu": ["https://www.nabu.de/", "https://www.nabu-muenster.de/"],
-		"nachichten": ["https://web.whatsapp.com/"],
+		"nachichten": ["https://www.tagesschau.de/", "https://www.n-tv.de/"],
 		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
 		"you tube": ["https://www.youtube.com/", "https://www.youtube.de"],
 		"Musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
@@ -108,10 +108,9 @@ button:hover {
 		"soundcloud": ["https://soundcloud.com/"],
 		"spotify": ["https://open.spotify.com/"],
 		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
-		"you toube": ["https://www.youtube.com/", "https://example.com/dolor2"],
-		"google maps": ["https://www.google.com/maps/", "https://example.com/dolor2"],
-		"koogle maps": ["https://www.google.com/maps/"],
-		"amazon": ["https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2"]
+		"you toube": ["https://www.youtube.com/"],
+		"google maps": ["https://www.google.com/maps/"],
+		"amazon": ["https://www.amazon.com/"]
             };
 
             // Überprüfen, ob das eingegebene Keyword in den vordefinierten Links enthalten ist
@@ -132,4 +131,10 @@ button:hover {
             }
         }
 </script>
+
+<script>
+  function changeColor() {
+    document.getElementById("text").style.backgroundColor = "red";
+  }
+  </script>
 </html>
