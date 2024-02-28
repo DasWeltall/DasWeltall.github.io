@@ -2,9 +2,136 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Hallo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koogle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: rgb(74, 74, 119);
+    } 
+    
+    h1 {
+      font-size: 100px;
+      font-weight: bold;
+      color: #0073b7;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1::after {
+      content: " ";
+      font-size: 150px;
+      font-weight: normal;
+      color: #ff9800;
+      margin-left: 10px;
+    }
+
+
+   
+    input {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: orange;
+  border: 2px solid #B404AE;
+  border-radius: 10px;
+  padding: 15px 50px;
+}
+
+
+    button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #B404AE;
+  border-radius: 23px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #ff9800;
+}
+  </style>
+
+
 </head>
 <body>
-  <h1>Hello World</h1>
+  
+  <h1 size="300" style="color: orange;">Koogle</h1>
+			<h5 style="color: orange;">Ihre Suchmaschine für kurze Suchen</h5>
+			<form id="searchForm">
+        			<input type="text" id="searchQuery" placeholder="Seach...">
+              
+				<button type="submit" id="search-button"><img src="find-2.png" alt="suche"></button><button type="submit" id="search-button"><img src="mi-1.svg" alt="suche"></button>
+    			</form>
+			<ul id="results"></ul>
+			<footer>
+			<h4 style="color: white;">Trents bei Suchanfragen:</h4>
+			<h6 style="color: white;">| raspberry pi |</h6>
+			<h6 style="color: white;">| amazon |</h6>
+			<h6 style="color: white;">| smartghost |</h6>
+			<h6 style="color: white;">| koogle maps |</h6>
+			<a href="http://192.168.0.80/var/www/html/index.html">Über Koogle</a>
+			<a href="http://192.168.0.80/var/www/html/index.html">Einstellungen</a>
+			<a href="http://192.168.0.80/var/www/html/index.html">Design wechseln</a>
+			<a href="http://192.168.0.80/var/www/html/index.html">Nutzungsbedingungen</a>
+			</footer>
 </body>
+<script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var query = document.getElementById("searchQuery").value;
+            search(query);
+        });
+
+        function search(query) {
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            
+            var predefinedLinks = {
+                "smartghost": ["https://www.smartghost-muenster.de", "https://www.smartghost-muenster.de/shop"],
+                "google": ["https://www.google.com"],
+                "whats app": ["https://web.whatsapp.com/"],
+		"raspberry pi": ["https://www.raspberrypi.com/", "https://www.amazon.de/s?k=raspberry+pi&crid=16G310TLNUIJ8&sprefix=raspberry+pi%2Caps%2C417&ref=nb_sb_noss_1"],
+		"Google": ["https://www.google.com"],
+		"apple": ["https://www.apple.com", "https://en.wikipedia.org/wiki/Apple_Inc."],
+		"nabu": ["https://www.nabu.de/", "https://www.nabu-muenster.de/"],
+		"nachichten": ["https://web.whatsapp.com/"],
+		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
+		"you tube": ["https://www.youtube.com/", "https://www.youtube.de"],
+		"Musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
+		"musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
+		"soundcloud": ["https://soundcloud.com/"],
+		"spotify": ["https://open.spotify.com/"],
+		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
+		"you toube": ["https://www.youtube.com/", "https://example.com/dolor2"],
+		"google maps": ["https://www.google.com/maps/", "https://example.com/dolor2"],
+		"koogle maps": ["https://www.google.com/maps/"],
+		"amazon": ["https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2", "https://www.amazon.com/", "https://example.com/dolor2"]
+            };
+
+            // Überprüfen, ob das eingegebene Keyword in den vordefinierten Links enthalten ist
+            if (predefinedLinks.hasOwnProperty(query)) {
+                var links = predefinedLinks[query];
+                // Links anzeigen
+                links.forEach(function(link) {
+                    var listItem = document.createElement("li");
+                    var linkElement = document.createElement("a");
+                    linkElement.href = link;
+                    linkElement.textContent = link;
+                    linkElement.target = "_blank"; 
+                    listItem.appendChild(linkElement);
+                    resultsDiv.appendChild(listItem);
+                });
+            } else {
+                resultsDiv.textContent = "Keine Ergebnisse gefunden.";
+            }
+        }
+</script>
 </html>
