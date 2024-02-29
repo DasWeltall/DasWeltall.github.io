@@ -64,12 +64,11 @@ button:hover {
 <body>
   <h1 size="300" style="color: orange;">Koogle</h1>
 			<h5 style="color: orange;">Ihre Suchmaschine für kurze Suchen</h5>
-			<form id="searchForm">
-        			<input type="text" id="searchQuery" placeholder="Seach...">
-              
-				<button type="submit" id="search-button"><img src="find-2.png" alt="suche"></button><button type="submit" id="search-button"><img src="mi-1.svg" alt="suche"></button>
-    			</form>
-			<ul id="results"></ul>
+	                <form id="searchForm">
+                               <input type="text" id="searchQuery" placeholder="Suchen...">
+                               <button type="button" onclick="search()">Suchen</button>
+                        </form>
+                        <ul id="results"></ul>
 			<footer>
 			<h4 style="color: white;">Trents bei Suchanfragen:</h4>
 			<h6 style="color: white;">| TV |</h6>
@@ -84,56 +83,50 @@ button:hover {
 </body>
 
 <script>
-        document.getElementById("searchForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            var query = document.getElementById("searchQuery").value;
-            search(query);
+    // Vorprogrammierte Links mit Titel, Beschreibung und URL
+    var predefinedLinks = [
+        { title: "Smartghost", description: "Smartghost Münster", url: "https://www.smartghost-muenster.de" },
+        { title: "WhatsApp", description: "WhatsApp Web", url: "https://web.whatsapp.com/" },
+        { title: "Raspberry Pi", description: "Raspberry Pi Foundation", url: "https://www.raspberrypi.com/" },
+        { title: "Google", description: "Die bekannteste Suchmaschine", url: "https://www.google.com" },
+        { title: "Apple", description: "Apple Inc.", url: "https://www.apple.com" },
+        { title: "NABU", description: "Naturschutzbund Deutschland", url: "https://www.nabu.de/" },
+        { title: "Tagesschau", description: "Aktuelle Nachrichten", url: "https://www.tagesschau.de" },
+        { title: "Samsung", description: "Samsung Electronics", url: "https://www.samsung.com/" },
+        { title: "YouTube", description: "Video-Plattform", url: "https://www.youtube.com/" },
+        { title: "SoundCloud", description: "Audio-Plattform", url: "https://soundcloud.com/" },
+        { title: "Spotify", description: "Musik-Streaming-Dienst", url: "https://open.spotify.com/" },
+        { title: "TV Today", description: "Fernsehprogramm", url: "https://www.tvtoday.de/" },
+        { title: "Google Maps", description: "Karten und Routenplanung", url: "https://www.google.com/maps/" },
+        { title: "Amazon", description: "Online-Versandhändler", url: "https://www.amazon.com/" },
+        { title: "GitHub", description: "Plattform für Entwickler", url: "https://github.com/" },
+        { title: "Wikipedia", description: "Online-Enzyklopädie", url: "https://www.wikipedia.org" }
+    ];
+
+    function search() {
+        var query = document.getElementById('searchQuery').value.toLowerCase();
+        var resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = ''; // Lösche vorherige Suchergebnisse
+        var matches = [];
+
+        // Durchsuche die vorprogrammierten Links nach Übereinstimmungen mit der Suchanfrage
+        predefinedLinks.forEach(function(link) {
+            if (link.title.toLowerCase().includes(query) || link.description.toLowerCase().includes(query)) {
+                matches.push(link);
+            }
         });
 
-        function search(query) {
-            var resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
+        // Zeige die gefundenen Suchergebnisse an
+        matches.forEach(function(match) {
+            var resultElement = document.createElement('div');
+            resultElement.innerHTML = '<a href="' + match.url + '">' + match.title + '</a><p>' + match.description + '</p>';
+            resultsContainer.appendChild(resultElement);
+        });
 
-            
-            var predefinedLinks = {
-                "Smartghost": ["https://www.smartghost-muenster.de", "https://www.smartghost-muenster.de/shop"],
-                "Whats App": ["https://web.whatsapp.com/"],
-		"Raspberry Pi": ["https://www.raspberrypi.com/", "https://www.amazon.de/s?k=raspberry+pi&crid=16G310TLNUIJ8&sprefix=raspberry+pi%2Caps%2C417&ref=nb_sb_noss_1"],
-		"Google": ["https://www.google.com"],
-		"Apple": ["https://www.apple.com", "https://en.wikipedia.org/wiki/Apple_Inc."],
-		"Nabu": ["https://www.nabu.de/", "https://www.nabu-muenster.de/"],
-		"Nachrichten": ["https://www.tagesschau.de"],
-		"Samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
-		"You Tube": ["https://www.youtube.com/", "https://www.youtube.de"],
-		"Musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
-		"musik": ["https://soundcloud.com/", "https://open.spotify.com/"],
-		"soundcloud": ["https://soundcloud.com/"],
-		"spotify": ["https://open.spotify.com/"],
-		"samsung": ["https://www.samsung.com//", "https://www.samsung.com/de"],
-		"TV": ["https://www.tvtoday.de/"],
-		"Google maps": ["https://www.google.com/maps/"],
-		"Amazon": ["https://www.amazon.com/"],
-		"Koogle": ["https://dasweltall.github.io/koogle/"],
-		"Github": ["https://github.com/"],
-		"Wikipedia": ["https://www.wikipedia.org"]
-	    };
-
-            // Überprüfen, ob das eingegebene Keyword in den vordefinierten Links enthalten ist
-            if (predefinedLinks.hasOwnProperty(query)) {
-                var links = predefinedLinks[query];
-                // Links anzeigen
-                links.forEach(function(link) {
-                    var listItem = document.createElement("li");
-                    var linkElement = document.createElement("a");
-                    linkElement.href = link;
-                    linkElement.textContent = link;
-                    linkElement.target = "_blank"; 
-                    listItem.appendChild(linkElement);
-                    resultsDiv.appendChild(listItem);
-                });
-            } else {
-                resultsDiv.textContent = "Keine Ergebnisse gefunden.";
-            }
+        // Wenn keine Übereinstimmungen gefunden wurden, zeige eine entsprechende Nachricht an
+        if (matches.length === 0) {
+            resultsContainer.textContent = "Keine Ergebnisse gefunden.";
         }
+    }
 </script>
 </html>
