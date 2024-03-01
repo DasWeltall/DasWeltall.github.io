@@ -30,7 +30,27 @@
     }
 
 
-   
+  #iconButton {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #iconButton:hover {
+      background-color: #0056b3;
+    }
+
     input {
   font-family: Arial, sans-serif;
   font-size: 12px;
@@ -62,6 +82,7 @@ button:hover {
 
 </head>
 <body>
+   <button id="iconButton"><img src="find-2.png" alt="Icon"></button>
   <h1 size="200" style="color: orange;">Kooogle</h1>
 			<h5 style="color: orange;">Ihre Suchmaschine für kurze Suchen</h5>
 	                <form id="searchForm">
@@ -130,4 +151,13 @@ button:hover {
         }
     }
 </script>
+
+  <script>
+    // Event-Listener hinzufügen, um auf Klicks auf den Button zu reagieren
+    document.getElementById("iconButton").addEventListener("click", function() {
+      // Weiterleitung zur Indexseite (index.html)
+      window.location.href = "game.html";
+    });
+  </script>
+
 </html>
