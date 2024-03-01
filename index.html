@@ -50,6 +50,22 @@
       background-color: #0056b3;
     }
 
+	  #iconButton2 {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     input {
   font-family: Arial, sans-serif;
   font-size: 12px;
@@ -82,7 +98,7 @@ button:hover {
 </head>
 <body>
    <button id="iconButton"><img src="einstellen.png" alt="Icon"></button>
-   <button id="iconButton"><img src="mehr.png" alt="Icon"></button>
+   <button id="iconButton2"><img src="mehr.png" alt="Icon"></button>
   <h1 size="200" style="color: orange;">Kooogle</h1>
 			<h5 style="color: orange;">Ihre Suchmaschine für kurze Suchen</h5>
 	                <form id="searchForm">
@@ -155,6 +171,11 @@ button:hover {
      // Event-Listener hinzufügen, um auf Klicks auf den Button zu reagieren
     document.getElementById("iconButton").addEventListener("click", function() {
       window.location.href = "einstellungen.html";
+    });
+
+     // Event-Listener hinzufügen, um auf Klicks auf den Button zu reagieren
+    document.getElementById("iconButton2").addEventListener("click", function() {
+      window.location.href = "mehr.html";
     });
 </script>
 
